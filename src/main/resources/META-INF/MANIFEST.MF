@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: io.github.minus1over12.terraria_activity_tracker.TerrariaActivi
+ tyTracker
+

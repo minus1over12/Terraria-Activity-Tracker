@@ -1,0 +1,76 @@
+package io.github.minus1over12.terraria_activity_tracker;
+
+import com.github.kwhat.jnativehook.GlobalScreen;
+import com.github.kwhat.jnativehook.NativeHookException;
+import com.github.kwhat.jnativehook.dispatcher.SwingDispatchService;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.layout.TilePane;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+
+import java.util.Objects;
+
+/**
+ * @author War Pigeon
+ */
+public class TerrariaActivityTracker extends Application
+{
+
+    /**
+     * Array of activities
+     */
+    private final Activity[] activities = new Activity[25];
+
+    private final TilePane pane = new TilePane();
+
+    @Override
+    public void start(Stage stage)
+    {
+        // Setup Activities array
+        for(byte i = 0; i < activities.length; i++) {
+            if (i == 21 - 10)
+                activities[i] = new Activity(i + 10 + ".gif");
+            else
+                activities[i] = new Activity(i + 10 + ".png");
+        }
+
+        // Add the icons into the pane
+        for (Activity activity : activities)
+            pane.getChildren().add(activity.view);
+
+        // JavaFX must have a Scene (window content) inside a Stage (window)
+        Scene scene = new Scene(pane, 240, 200);
+        scene.setFill(Color.NAVY);
+        stage.setTitle("Terraria Activity Tracker");
+        stage.getIcons().add(new Image(Objects.requireNonNull(TerrariaActivityTracker.class.getResourceAsStream("Icons/3DS_Boss_Icon.png"))));
+        stage.setScene(scene);
+
+        // Show the Stage (window)
+        stage.show();
+
+        // Setup JNativeHook. Needs to go after stage.show() for threading reasons
+        GlobalScreen.setEventDispatcher(new SwingDispatchService());
+
+        try {
+            GlobalScreen.registerNativeHook();
+        }
+        catch (NativeHookException ex) {
+            System.err.println("There was a problem registering the native hook.");
+            System.err.println(ex.getMessage());
+
+            System.exit(1);
+        }
+
+        GlobalScreen.addNativeKeyListener(new GlobalKeyListener(activities));
+
+    }
+
+    @Override
+    public void stop() {
+        System.exit(0);
+    }
+
+
+}
