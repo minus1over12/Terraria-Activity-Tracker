@@ -1,0 +1,80 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  buildlinux:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'liberica'
+        cache: maven
+        java-package: jdk-full
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+    - name: Package App Image with JPackage
+      run: jpackage --input target --main-jar Terraria_Activity_Tracker.jar --name Terraria_Activity_Tracker --main-class io.github.minus1over12.terraria_activity_tracker.TerrariaActivityTracker --icon target/classes/io/github/minus1over12/terraria_activity_tracker/Icons/3DS_Boss_Icon.png --type app-image --dest out/
+    - name: Archive results
+      uses: actions/upload-artifact@v3
+      with:
+        name: AppImage
+        path: out/Terraria_Activity_Tracker
+
+  buildwindows:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'liberica'
+        cache: maven
+        java-package: jdk-full
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+    - name: Package exe with JPackage
+      run: jpackage --input target --main-jar Terraria_Activity_Tracker.jar --name Terraria_Activity_Tracker --main-class io.github.minus1over12.terraria_activity_tracker.TerrariaActivityTracker --icon target/classes/io/github/minus1over12/terraria_activity_tracker/Icons/3DS_Boss_Icon.png --type exe --dest out/ --win-per-user-install --win-menu --win-update-url "https://github.com/minus1over12/Terraria-Activity-Tracker/releases"
+    - name: Archive results
+      uses: actions/upload-artifact@v3
+      with:
+        name: exe
+        path: out/*
+
+  buildmac:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'liberica'
+        cache: maven
+        java-package: jdk-full
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+    - name: Package dmg with JPackage
+      run: jpackage --input target --main-jar Terraria_Activity_Tracker.jar --name Terraria_Activity_Tracker --main-class io.github.minus1over12.terraria_activity_tracker.TerrariaActivityTracker --icon target/classes/io/github/minus1over12/terraria_activity_tracker/Icons/3DS_Boss_Icon.png --type dmg --dest out/
+    - name: Archive results
+      uses: actions/upload-artifact@v3
+      with:
+        name: dmg
+        path: out/*

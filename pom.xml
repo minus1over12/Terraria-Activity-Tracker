@@ -92,6 +92,7 @@
                                     <mainClass>io.github.minus1over12.terraria_activity_tracker.TerrariaActivityTracker</mainClass>
                                 </transformer>
                             </transformers>
+                            <finalName>Terraria_Activity_Tracker</finalName>
                         </configuration>
                     </execution>
                 </executions>
