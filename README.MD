@@ -31,8 +31,8 @@ The app used the F2-F6, the edit keys, control, and shift for toggling the state
 | Martian Madness  | Control + Shift + F3 |
 | Frost Legion     | Control + Shift + F4 |
 ## Install
-You need [Liberica 17](https://bell-sw.com/pages/downloads/#/java-17-lts) to run JavaFX 17 programs; __Set the package to Full JRE__ on the download page. Once installed, download TerrariaActivityTracker.jar. If you are on Windows, you can just double click the jar file to run it. For Linux users, open a terminal at the directory you downloaded the jar and run `java -jar TerrariaActivityTracker.jar`.
+Go to the [releases](https://github.com/minus1over12/Terraria-Activity-Tracker/releases) page and get the version of the app for your OS. For Windows users: the program silently adds the tracker to your Start Menu.
 ## Credits
 All icons included with this program are intellectual property of Re-Logic.
 
-The [JNativeHook](https://github.com/kwhat/jnativehook) and [OpenJFX](https://openjfx.io/) libraries are used to power the program.
+The [JNativeHook](https://github.com/kwhat/jnativehook) and [OpenJFX](https://openjfx.io/) libraries are used to power the program, along with the [Liberica JDK](https://bell-sw.com/pages/libericajdk/).
