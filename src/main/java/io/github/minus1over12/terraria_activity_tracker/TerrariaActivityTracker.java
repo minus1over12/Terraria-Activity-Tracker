@@ -4,6 +4,7 @@ import com.github.kwhat.jnativehook.GlobalScreen;
 import com.github.kwhat.jnativehook.NativeHookException;
 import com.github.kwhat.jnativehook.dispatcher.SwingDispatchService;
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.TilePane;
@@ -40,8 +41,12 @@ public class TerrariaActivityTracker extends Application
         for (Activity activity : activities)
             pane.getChildren().add(activity.view);
 
+        // Setup Tile Pane
+        pane.setVgap(2);
+        pane.setHgap(2);
+
         // JavaFX must have a Scene (window content) inside a Stage (window)
-        Scene scene = new Scene(pane, 240, 200);
+        Scene scene = new Scene(pane, (50+2)*3, (50+2)*6);
         scene.setFill(Color.NAVY);
         stage.setTitle("Terraria Activity Tracker");
         stage.getIcons().add(new Image(Objects.requireNonNull(TerrariaActivityTracker.class.getResourceAsStream("Icons/3DS_Boss_Icon.png"))));

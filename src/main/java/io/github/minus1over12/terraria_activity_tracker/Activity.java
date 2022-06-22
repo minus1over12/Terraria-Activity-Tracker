@@ -34,6 +34,9 @@ public class Activity
         dark = new Image(Objects.requireNonNull(Activity.class.getResourceAsStream("Icons/Dark/" + uri)));
         color = new Image(Objects.requireNonNull(Activity.class.getResourceAsStream("Icons/Color/" + uri)));
         view = new ImageView(dark);
+        view.setPreserveRatio(true);
+        view.setFitWidth(50);
+        view.setFitHeight(50);
     }
 
     /**
