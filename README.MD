@@ -30,9 +30,46 @@ The app used the F2-F6, the edit keys, control, and shift for toggling the state
 | Old One's Army   | Control + Shift + F2 |
 | Martian Madness  | Control + Shift + F3 |
 | Frost Legion     | Control + Shift + F4 |
+
+If you have all of the F keys unbound from Terraria, there is an alternate control scheme that can be accessed by
+pressing F2 + F3
+
+| Icon             | Key         |
+|------------------|-------------|
+| King Slime       | F1          |
+| Eye of Cthulu    | F2          |
+| Eater of Worlds  | F3          |
+| Brain of Cthulu  | F4          |
+| Skeletron        | F5          |
+| Queen Bee        | F6          |
+| Deerclops        | F7          |
+| Wall of Flesh    | F8          |
+| Queen Slime      | F9          |
+| Duke Fishron     | F10         |
+| Destroyer        | F11         |
+| Twins            | Insert      |
+| Skeletron Prime  | Delete      |
+| Plantera         | Home        |
+| Empress of Light | End         |
+| Golem            | Page Up     |
+| Lunatic Cultist  | Page Down   |
+| Moon Lord        | Scroll Lock |
+| Goblin Invasion  | Shift + F1  |
+| Pirate Invasion  | Shift + F2  |
+| Pumpkin Moon     | Shift + F3  |
+| Frost Moon       | Shift + F4  |
+| Old One's Army   | Shift + F5  |
+| Martian Madness  | Shift + F6  |
+| Frost Legion     | Shift + F7  |
+
 ## Install
-Go to the [releases](https://github.com/minus1over12/Terraria-Activity-Tracker/releases) page and get the version of the app for your OS.
+
+Go to the [releases](https://github.com/minus1over12/Terraria-Activity-Tracker/releases) page and get the version of the
+app for your OS.
+
 ## Credits
+
 All icons included with this program are intellectual property of Re-Logic.
 
-The [JNativeHook](https://github.com/kwhat/jnativehook) and [OpenJFX](https://openjfx.io/) libraries are used to power the program, along with the [Liberica JDK](https://bell-sw.com/pages/libericajdk/).
+The [JNativeHook](https://github.com/kwhat/jnativehook) and [OpenJFX](https://openjfx.io/) libraries are used to power
+the program, along with the [Liberica JDK](https://bell-sw.com/pages/libericajdk/).
