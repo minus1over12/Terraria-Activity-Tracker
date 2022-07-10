@@ -36,6 +36,11 @@ jobs:
       with:
         name: AppImage
         path: out/Terraria_Activity_Tracker
+    - name: Archive Jar
+      uses: actions/upload-artifact@v3
+      with:
+        name: Jar
+        path: target/Terraria_Activity_Tracker.jar
 
   buildwindows:
 
