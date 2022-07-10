@@ -62,6 +62,7 @@ pressing F2 + F3
 | Martian Madness  | Shift + F6  |
 | Frost Legion     | Shift + F7  |
 
+To reset all the activities at once, press 1 on the numpad.
 ## Install
 
 Go to the [releases](https://github.com/minus1over12/Terraria-Activity-Tracker/releases) page and get the version of the

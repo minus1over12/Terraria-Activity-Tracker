@@ -49,4 +49,12 @@ public class Activity
         else
             view.setImage(dark);
     }
+
+    /**
+     * Changes complete to false and image view to dark
+     */
+    public void reset() {
+        complete = false;
+        view.setImage(dark);
+    }
 }
