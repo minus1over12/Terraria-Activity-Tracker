@@ -37,6 +37,7 @@ public class Activity
         view.setPreserveRatio(true);
         view.setFitWidth(50);
         view.setFitHeight(50);
+        view.setOnMouseClicked(event -> toggle());
     }
 
     /**
