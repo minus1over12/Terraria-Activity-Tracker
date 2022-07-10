@@ -1,9 +1,12 @@
 package io.github.minus1over12.terraria_activity_tracker;
 
 import com.github.kwhat.jnativehook.GlobalScreen;
+import com.github.kwhat.jnativehook.NativeInputEvent;
 import com.github.kwhat.jnativehook.dispatcher.SwingDispatchService;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
+
+import java.lang.reflect.Field;
 
 // Code based off template from JNativeHook
 
@@ -76,7 +79,7 @@ public class GlobalKeyListener implements NativeKeyListener {
                         case NativeKeyEvent.VC_F4 -> activities[24].toggle();
                     }
                 }
-            } else { // Alternate control scheme for if some of Terraria's keybinds are changed.
+            } else { // Alternate control scheme that consumes the key events, so it does not trigger things in Terraria.
                 if (!shift) {
                     switch (e.getKeyCode()) {
                         case NativeKeyEvent.VC_F1 -> activities[0].toggle();
@@ -85,11 +88,23 @@ public class GlobalKeyListener implements NativeKeyListener {
                         case NativeKeyEvent.VC_F4 -> activities[3].toggle();
                         case NativeKeyEvent.VC_F5 -> activities[4].toggle();
                         case NativeKeyEvent.VC_F6 -> activities[5].toggle();
-                        case NativeKeyEvent.VC_F7 -> activities[6].toggle();
-                        case NativeKeyEvent.VC_F8 -> activities[7].toggle();
+                        case NativeKeyEvent.VC_F7 -> {
+                            activities[6].toggle();
+                            consume(e);
+                        }
+                        case NativeKeyEvent.VC_F8 -> {
+                            activities[7].toggle();
+                            consume(e);
+                        }
                         case NativeKeyEvent.VC_F9 -> activities[8].toggle();
-                        case NativeKeyEvent.VC_F10 -> activities[9].toggle();
-                        case NativeKeyEvent.VC_F11 -> activities[10].toggle();
+                        case NativeKeyEvent.VC_F10 -> {
+                            activities[9].toggle();
+                            consume(e);
+                        }
+                        case NativeKeyEvent.VC_F11 -> {
+                            activities[10].toggle();
+                            consume(e);
+                        }
                         case NativeKeyEvent.VC_INSERT -> activities[11].toggle();
                         case NativeKeyEvent.VC_DELETE -> activities[12].toggle();
                         case NativeKeyEvent.VC_HOME -> activities[13].toggle();
@@ -106,7 +121,10 @@ public class GlobalKeyListener implements NativeKeyListener {
                         case NativeKeyEvent.VC_F4 -> activities[21].toggle();
                         case NativeKeyEvent.VC_F5 -> activities[22].toggle();
                         case NativeKeyEvent.VC_F6 -> activities[23].toggle();
-                        case NativeKeyEvent.VC_F7 -> activities[24].toggle();
+                        case NativeKeyEvent.VC_F7 -> {
+                            activities[24].toggle();
+                            consume(e);
+                        }
                     }
                 }
             }
@@ -119,6 +137,20 @@ public class GlobalKeyListener implements NativeKeyListener {
             case NativeKeyEvent.VC_SHIFT -> shift = false;
             case NativeKeyEvent.VC_F2 -> f2 = false;
             case NativeKeyEvent.VC_F3 -> f3 = false;
+        }
+    }
+
+    //Code from JNativeHook docs
+    /**
+     * Prevents other apps (Terraria) from reading an input event
+     */
+    private void consume(NativeInputEvent e) {
+        try {
+            Field f = NativeInputEvent.class.getDeclaredField("reserved");
+            f.setAccessible(true);
+            f.setShort(e, (short) 0x01);
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 

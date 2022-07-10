@@ -31,7 +31,7 @@ The app used the F2-F6, the edit keys, control, and shift for toggling the state
 | Martian Madness  | Control + Shift + F3 |
 | Frost Legion     | Control + Shift + F4 |
 
-If you have all the F keys unbound from Terraria, there is an alternate control scheme that can be accessed by
+If you want something easier to memorize and do not mind losing Terraria's keybinds, there is an alternate control scheme that can be accessed by
 pressing F2 + F3
 
 | Icon             | Key         |
