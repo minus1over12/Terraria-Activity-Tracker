@@ -45,7 +45,7 @@ public class TerrariaActivityTracker extends Application
         pane.setHgap(1);
 
         // JavaFX must have a Scene (window content) inside a Stage (window)
-        Scene scene = new Scene(pane, (50+2)*3, (50+2)*6);
+        Scene scene = new Scene(pane, (50+1)*3-1, (50+2)*6-2);
         scene.setFill(Color.PURPLE);
         stage.setTitle("Terraria Activity Tracker");
         stage.getIcons().add(new Image(Objects.requireNonNull(TerrariaActivityTracker.class.getResourceAsStream("Icons/3DS_Boss_Icon.png"))));
