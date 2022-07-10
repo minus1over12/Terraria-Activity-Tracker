@@ -42,7 +42,7 @@ public class TerrariaActivityTracker extends Application
 
         // Setup Tile Pane
         pane.setVgap(2);
-        pane.setHgap(2);
+        pane.setHgap(1);
 
         // JavaFX must have a Scene (window content) inside a Stage (window)
         Scene scene = new Scene(pane, (50+2)*3, (50+2)*6);
