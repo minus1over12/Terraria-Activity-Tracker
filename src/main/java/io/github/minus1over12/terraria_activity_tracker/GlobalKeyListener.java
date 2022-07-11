@@ -3,6 +3,7 @@ package io.github.minus1over12.terraria_activity_tracker;
 import com.github.kwhat.jnativehook.GlobalScreen;
 import com.github.kwhat.jnativehook.NativeInputEvent;
 import com.github.kwhat.jnativehook.dispatcher.SwingDispatchService;
+import com.github.kwhat.jnativehook.dispatcher.VoidDispatchService;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
 
@@ -16,10 +17,15 @@ import java.lang.reflect.Field;
 public class GlobalKeyListener implements NativeKeyListener {
     private final Activity[] activities;
     private boolean control, shift, f2, f3, altControls = false;
+    int numpad;
 
     public GlobalKeyListener(Activity[] activities) {
-        GlobalScreen.setEventDispatcher(new SwingDispatchService());
+        GlobalScreen.setEventDispatcher(new VoidDispatchService());
         this.activities = activities;
+        if (System.getProperty("os.name").startsWith("Windows"))
+            numpad = 1;
+        else
+            numpad = 4;
     }
 
     public void nativeKeyPressed(NativeKeyEvent e) {
@@ -35,7 +41,7 @@ public class GlobalKeyListener implements NativeKeyListener {
         if ((f2 && e.getKeyCode() == NativeKeyEvent.VC_F3) || (f3 && e.getKeyCode() == NativeKeyEvent.VC_F2))
             altControls = !altControls;
 
-        if (e.getKeyLocation() == NativeKeyEvent.KEY_LOCATION_NUMPAD && (e.getKeyCode() == NativeKeyEvent.VC_END || e.getKeyCode() == NativeKeyEvent.VC_1))
+        if ((e.getKeyLocation() == numpad && e.getKeyCode() == NativeKeyEvent.VC_END) || (e.getKeyLocation() == 4 && e.getKeyCode() == NativeKeyEvent.VC_1))
             for (Activity activity : activities)
                 activity.reset();
 
@@ -50,12 +56,24 @@ public class GlobalKeyListener implements NativeKeyListener {
                     case NativeKeyEvent.VC_F4 -> activities[2].toggle();
                     case NativeKeyEvent.VC_F5 -> activities[3].toggle();
                     case NativeKeyEvent.VC_F6 -> activities[4].toggle();
-                    case NativeKeyEvent.VC_INSERT -> activities[5].toggle();
-                    case NativeKeyEvent.VC_DELETE -> activities[6].toggle();
-                    case NativeKeyEvent.VC_HOME -> activities[7].toggle();
-                    case NativeKeyEvent.VC_END -> activities[8].toggle();
-                    case NativeKeyEvent.VC_PAGE_UP -> activities[9].toggle();
-                    case NativeKeyEvent.VC_PAGE_DOWN -> activities[10].toggle();
+                    case NativeKeyEvent.VC_INSERT -> {
+                        if (e.getKeyLocation() != numpad) activities[5].toggle();
+                    }
+                    case NativeKeyEvent.VC_DELETE -> {
+                        if (e.getKeyLocation() != numpad) activities[6].toggle();
+                    }
+                    case NativeKeyEvent.VC_HOME -> {
+                        if (e.getKeyLocation() != numpad) activities[7].toggle();
+                    }
+                    case NativeKeyEvent.VC_END -> {
+                        if (e.getKeyLocation() != numpad) activities[8].toggle();
+                    }
+                    case NativeKeyEvent.VC_PAGE_UP -> {
+                        if (e.getKeyLocation() != numpad) activities[9].toggle();
+                    }
+                    case NativeKeyEvent.VC_PAGE_DOWN -> {
+                        if (e.getKeyLocation() != numpad) activities[10].toggle();
+                    }
                 }
             } else if (!control && shift) {
                 switch (e.getKeyCode()) {
@@ -64,12 +82,24 @@ public class GlobalKeyListener implements NativeKeyListener {
                     case NativeKeyEvent.VC_F4 -> activities[13].toggle();
                     case NativeKeyEvent.VC_F5 -> activities[14].toggle();
                     case NativeKeyEvent.VC_F6 -> activities[15].toggle();
-                    case NativeKeyEvent.VC_INSERT -> activities[16].toggle();
-                    case NativeKeyEvent.VC_DELETE -> activities[17].toggle();
-                    case NativeKeyEvent.VC_HOME -> activities[18].toggle();
-                    case NativeKeyEvent.VC_END -> activities[19].toggle();
-                    case NativeKeyEvent.VC_PAGE_UP -> activities[20].toggle();
-                    case NativeKeyEvent.VC_PAGE_DOWN -> activities[21].toggle();
+                    case NativeKeyEvent.VC_INSERT -> {
+                        if (e.getKeyLocation() != numpad) activities[16].toggle();
+                    }
+                    case NativeKeyEvent.VC_DELETE -> {
+                        if (e.getKeyLocation() != numpad) activities[17].toggle();
+                    }
+                    case NativeKeyEvent.VC_HOME -> {
+                        if (e.getKeyLocation() != numpad) activities[18].toggle();
+                    }
+                    case NativeKeyEvent.VC_END -> {
+                        if (e.getKeyLocation() != numpad) activities[19].toggle();
+                    }
+                    case NativeKeyEvent.VC_PAGE_UP -> {
+                        if (e.getKeyLocation() != numpad) activities[20].toggle();
+                    }
+                    case NativeKeyEvent.VC_PAGE_DOWN -> {
+                        if (e.getKeyLocation() != numpad) activities[21].toggle();
+                    }
                 }
             } else if (control && shift) {
                 switch (e.getKeyCode()) {
@@ -104,12 +134,24 @@ public class GlobalKeyListener implements NativeKeyListener {
                         activities[10].toggle();
                         consume(e);
                     }
-                    case NativeKeyEvent.VC_INSERT -> activities[11].toggle();
-                    case NativeKeyEvent.VC_DELETE -> activities[12].toggle();
-                    case NativeKeyEvent.VC_HOME -> activities[13].toggle();
-                    case NativeKeyEvent.VC_END -> activities[14].toggle();
-                    case NativeKeyEvent.VC_PAGE_UP -> activities[15].toggle();
-                    case NativeKeyEvent.VC_PAGE_DOWN -> activities[16].toggle();
+                    case NativeKeyEvent.VC_INSERT -> {
+                        if (e.getKeyLocation() != numpad) activities[11].toggle();
+                    }
+                    case NativeKeyEvent.VC_DELETE -> {
+                        if (e.getKeyLocation() != numpad) activities[12].toggle();
+                    }
+                    case NativeKeyEvent.VC_HOME -> {
+                        if (e.getKeyLocation() != numpad) activities[13].toggle();
+                    }
+                    case NativeKeyEvent.VC_END -> {
+                        if (e.getKeyLocation() != numpad) activities[14].toggle();
+                    }
+                    case NativeKeyEvent.VC_PAGE_UP -> {
+                        if (e.getKeyLocation() != numpad) activities[15].toggle();
+                    }
+                    case NativeKeyEvent.VC_PAGE_DOWN -> {
+                        if (e.getKeyLocation() != numpad) activities[16].toggle();
+                    }
                     case NativeKeyEvent.VC_SCROLL_LOCK -> activities[17].toggle();
                 }
             } else {
