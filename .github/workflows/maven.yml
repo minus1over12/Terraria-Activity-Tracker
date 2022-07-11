@@ -41,6 +41,8 @@ jobs:
       with:
         name: Jar
         path: target/Terraria_Activity_Tracker.jar
+    - name: Jar Checksum
+      run: sha512sum target/Terraria_Activity_Tracker.jar
 
   buildwindows:
 
@@ -65,6 +67,9 @@ jobs:
       with:
         name: exe
         path: out/*
+    - name: Checksum
+      run: sha512sum out/*
+      shell: bash
 
   buildmac:
 
@@ -88,3 +93,5 @@ jobs:
       with:
         name: dmg
         path: out/*
+    - name: Checksum
+      run: shasum -a 512 out/*
