@@ -10,7 +10,7 @@ on:
     branches: [ "master" ]
 
 env:
-  JPACKAGE_COMMAND: jpackage --input target --main-jar Terraria_Activity_Tracker.jar --name Terraria_Activity_Tracker --main-class io.github.minus1over12.terraria_activity_tracker.TerrariaActivityTracker --icon target/classes/io/github/minus1over12/terraria_activity_tracker/Icons/3DS_Boss_Icon.png --dest out/ --app-version 1.3.1 --java-options "--add-opens=com.github.kwhat.jnativehook/com.github.kwhat.jnativehook=io.github.minus1over12.terraria_activity_tracker" --vendor WarPigeon
+  JPACKAGE_COMMAND: jpackage --input target --main-jar Terraria_Activity_Tracker.jar --name Terraria_Activity_Tracker --main-class io.github.minus1over12.terraria_activity_tracker.TerrariaActivityTracker --icon target/classes/io/github/minus1over12/terraria_activity_tracker/Icons/3DS_Boss_Icon.png --dest out/ --app-version 1.3.3 --java-options "--add-opens=com.github.kwhat.jnativehook/com.github.kwhat.jnativehook=io.github.minus1over12.terraria_activity_tracker" --vendor WarPigeon
 
 jobs:
 
