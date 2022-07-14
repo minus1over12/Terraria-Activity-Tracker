@@ -111,7 +111,10 @@ public class GlobalKeyListener implements NativeKeyListener {
         } else { // Alternate control scheme that consumes the key events, so it does not trigger things in Terraria.
             if (!shift) {
                 switch (e.getKeyCode()) {
-                    case NativeKeyEvent.VC_F1 -> activities[0].toggle();
+                    case NativeKeyEvent.VC_F1 -> {
+                        activities[0].toggle();
+                        consume(e);
+                    }
                     case NativeKeyEvent.VC_F2 -> activities[1].toggle();
                     case NativeKeyEvent.VC_F3 -> activities[2].toggle();
                     case NativeKeyEvent.VC_F4 -> activities[3].toggle();
@@ -181,7 +184,7 @@ public class GlobalKeyListener implements NativeKeyListener {
         }
         if (altControls) {
             switch (e.getKeyCode()) {
-                case NativeKeyEvent.VC_F7, NativeKeyEvent.VC_F8, NativeKeyEvent.VC_F10, NativeKeyEvent.VC_F11 ->
+                case NativeKeyEvent.VC_F1, NativeKeyEvent.VC_F7, NativeKeyEvent.VC_F8, NativeKeyEvent.VC_F10, NativeKeyEvent.VC_F11 ->
                         consume(e);
             }
         }
