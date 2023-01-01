@@ -25,15 +25,18 @@ public class TerrariaActivityTracker extends Application
 
     private final TilePane pane = new TilePane();
 
+    private final String[] shortcuts = {"KS", "EOC", "EOW", "BOC", "SK", "QB", "DEE", "WOF", "QS", "DF", "DES", "T", "SP",
+            "PL", "EOL", "GOL", "LC", "ML", "GOB", "PI", "PM", "FM", "OOA", "MM", "FL"};
+
     @Override
     public void start(Stage stage)
     {
         // Setup Activities array
         for(byte i = 0; i < activities.length; i++) {
             if (i == 21 - 10)
-                activities[i] = new Activity(i + 10 + ".gif");
+                activities[i] = new Activity(i + 10 + ".gif", shortcuts[i]);
             else
-                activities[i] = new Activity(i + 10 + ".png");
+                activities[i] = new Activity(i + 10 + ".png", shortcuts[i]);
         }
 
         // Add the icons into the pane

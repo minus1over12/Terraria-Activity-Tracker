@@ -29,10 +29,21 @@ public class Activity
      */
     private boolean complete = false;
 
-    public Activity(String uri)
+    /**
+     * The shortcut for this Activity
+     */
+    public final String shortcut;
+
+    /**
+     * Constructs an Activity
+     * @param uri The URI of the image to use.
+     * @param shortcut The shortcut to use.
+     */
+    public Activity(String uri, String shortcut)
     {
         dark = new Image(Objects.requireNonNull(Activity.class.getResourceAsStream("Icons/Dark/" + uri)));
         color = new Image(Objects.requireNonNull(Activity.class.getResourceAsStream("Icons/Color/" + uri)));
+        this.shortcut = shortcut;
         view = new ImageView(dark);
         view.setPreserveRatio(true);
         view.setFitWidth(50);
