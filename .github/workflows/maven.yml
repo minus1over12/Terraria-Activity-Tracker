@@ -32,12 +32,12 @@ jobs:
     - name: Package App Image with JPackage
       run: $JPACKAGE_COMMAND --type app-image --icon target/classes/io/github/minus1over12/terraria_activity_tracker/Icons/3DS_Boss_Icon.png
     - name: Archive results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: AppImage
         path: out/Terraria_Activity_Tracker
     - name: Archive Jar
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: Jar
         path: target/Terraria_Activity_Tracker.jar
@@ -63,7 +63,7 @@ jobs:
       run: $JPACKAGE_COMMAND --win-per-user-install --win-menu --win-update-url "https://github.com/minus1over12/Terraria-Activity-Tracker/releases" --win-shortcut-prompt --win-menu-group "" --win-shortcut --win-upgrade-uuid "586fb6b8-74d4-4ec9-afc5-ad1e5718006e"
       shell: bash
     - name: Archive results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: exe
         path: out/*
@@ -89,7 +89,7 @@ jobs:
     - name: Package dmg with JPackage
       run: $JPACKAGE_COMMAND --mac-package-name "Terraria Activity Tracker"
     - name: Archive results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: dmg
         path: out/*
