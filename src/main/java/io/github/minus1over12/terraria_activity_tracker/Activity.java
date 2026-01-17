@@ -1,5 +1,6 @@
 package io.github.minus1over12.terraria_activity_tracker;
 
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -17,13 +18,9 @@ public class Activity
      */
     public final ImageView view;
     /**
-     * Image used for when an activity is complete.
+     * Effect to darken the image.
      */
-    private final Image color;
-    /**
-     * Image used for when an activity is not complete. I made them using PhotoScape's filters
-     */
-    private final Image dark;
+    private final ColorAdjust darkEffect;
     /**
      * Tracks the current state of the activity
      */
@@ -41,13 +38,14 @@ public class Activity
      */
     public Activity(String uri, String shortcut)
     {
-        dark = new Image(Objects.requireNonNull(Activity.class.getResourceAsStream("Icons/Dark/" + uri)));
-        color = new Image(Objects.requireNonNull(Activity.class.getResourceAsStream("Icons/Color/" + uri)));
+        Image color = new Image(Objects.requireNonNull(Activity.class.getResourceAsStream("Icons/Color/" + uri)));
+        darkEffect = new ColorAdjust(0, 0, -0.8, -0.1);
         this.shortcut = shortcut;
-        view = new ImageView(dark);
+        view = new ImageView(color);
         view.setPreserveRatio(true);
         view.setFitWidth(50);
         view.setFitHeight(50);
+        view.setEffect(darkEffect);
         view.setOnMouseClicked(event -> toggle());
     }
 
@@ -57,9 +55,9 @@ public class Activity
     public void toggle() {
         complete = !complete;
         if (complete)
-            view.setImage(color);
+            view.setEffect(null);
         else
-            view.setImage(dark);
+            view.setEffect(darkEffect);
     }
 
     /**
@@ -67,6 +65,6 @@ public class Activity
      */
     public void reset() {
         complete = false;
-        view.setImage(dark);
+        view.setEffect(darkEffect);
     }
 }
